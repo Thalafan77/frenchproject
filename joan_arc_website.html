@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeanne d'Arc - The Maid of Orléans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, rgb(43, 103, 119) 0%, rgb(82, 171, 152) 100%);
+            color: rgb(242, 242, 242);
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(43, 103, 119, 0.8), rgba(43, 103, 119, 0.9));
+        }
+
+        .hero::before {
+            content: '⚜';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            color: rgb(255, 255, 255);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 30px rgba(82, 171, 152, 0.8), 0 0 60px rgba(82, 171, 152, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(82, 171, 152, 0.5)); }
+            to { filter: drop-shadow(0 0 25px rgba(82, 171, 152, 0.9)); }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: rgb(200, 141, 228);
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            color: rgb(82, 171, 152);
+            font-size: 2rem;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            background: rgba(200, 141, 228, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 2px solid rgba(82, 171, 152, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(82, 171, 152, 0.4);
+            border-color: rgb(82, 171, 152);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: rgb(255, 255, 255);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid rgb(82, 171, 152);
+            padding-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 3px solid rgb(82, 171, 152);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-left-color: rgb(200, 141, 228);
+            padding-left: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgb(82, 171, 152);
+            box-shadow: 0 0 15px rgba(82, 171, 152, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            background: rgb(200, 141, 228);
+            box-shadow: 0 0 20px rgba(200, 141, 228, 0.9);
+            transform: scale(1.3);
+        }
+
+        .year {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: rgb(82, 171, 152);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item:hover .year {
+            color: rgb(200, 141, 228);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(43, 103, 119, 0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid rgba(82, 171, 152, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(43, 103, 119, 0.5);
+            border-color: rgb(82, 171, 152);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(82, 171, 152, 0.3);
+        }
+
+        .card h3 {
+            color: rgb(200, 141, 228);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(200, 141, 228, 0.1);
+            border-left: 5px solid rgb(82, 171, 152);
+            margin: 2rem 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .quote:hover {
+            background: rgba(200, 141, 228, 0.2);
+            border-left-width: 8px;
+            padding-left: 2.5rem;
+        }
+
+        .highlight {
+            color: rgb(82, 171, 152);
+            font-weight: bold;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .source-link {
+            display: inline-block;
+            color: rgb(82, 171, 152);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid rgb(82, 171, 152);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .source-link:hover {
+            background: rgb(82, 171, 152);
+            color: rgb(43, 103, 119);
+            transform: translateX(5px);
+        }
+
+        .sources-section {
+            background: rgba(43, 103, 119, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .sources-section h4 {
+            color: rgb(200, 141, 228);
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .source-item {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .symbol {
+            font-size: 3rem;
+            text-align: center;
+            color: rgb(82, 171, 152);
+            margin: 2rem 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgb(43, 103, 119);
+            color: rgb(200, 141, 228);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .subtitle { font-size: 1.3rem; }
+            h2 { font-size: 2rem; }
+            .section { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>JEANNE D'ARC</h1>
+        <p class="subtitle">La Pucelle d'Orléans • The Maid of Orléans</p>
+        <div class="scroll-indicator">↓</div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>The Legend</h2>
+            <p>Jeanne d'Arc is one of history's most extraordinary figures. A peasant girl who claimed to receive divine visions, she led the French army to crucial victories during the Hundred Years' War and became a symbol of courage, faith, and national pride.</p>
+            <p>Born around 1412 in Domrémy, France, Jeanne's story is one of unwavering conviction against impossible odds. At just 17 years old, she convinced the embattled crown prince Charles of Valois to allow her to lead French forces to the besieged city of Orléans, where she achieved a momentous victory.</p>
+            <div class="sources-section">
+                <h4>📚 Sources:</h4>
+                <div class="source-item">• <a href="https://www.britannica.com/biography/Saint-Joan-of-Arc" target="_blank" class="source-link">Britannica - Joan of Arc Biography</a></div>
+                <div class="source-item">• <a href="https://en.wikipedia.org/wiki/Joan_of_Arc" target="_blank" class="source-link">Wikipedia - Joan of Arc</a></div>
+                <div class="source-item">• <a href="https://www.biography.com/military-figures/joan-of-arc" target="_blank" class="source-link">Biography.com - Joan of Arc</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Life Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">c. 1412</div>
+                    <p>Born in Domrémy, a small village in northeastern France, to Jacques d'Arc and Isabelle Romée. She grew up during the Hundred Years' War between France and England.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1425</div>
+                    <p>At age 13, Jeanne began experiencing visions and hearing voices she identified as Saint Michael, Saint Catherine, and Saint Margaret. They urged her to support Charles VII and help drive the English from France.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1429</div>
+                    <p>Convinced the Dauphin Charles to give her command of an army. Led French forces to a spectacular victory at Orléans, turning the tide of the war. Charles VII was crowned King at Reims with Joan at his side.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1430</div>
+                    <p>Captured by Burgundian forces allied with England during a skirmish near Compiègne. She was sold to the English for 10,000 francs.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1431</div>
+                    <p>Tried by an ecclesiastical court for heresy and witchcraft. Despite her eloquent defense, she was found guilty and burned at the stake in Rouen on May 30, at approximately 19 years old.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1456</div>
+                    <p>Posthumously exonerated by Pope Callixtus III after a retrial. Declared a martyr.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1920</div>
+                    <p>Canonized as a saint by Pope Benedict XV. Became one of the patron saints of France.</p>
+                </div>
+            </div>
+            <div class="sources-section">
+                <h4>📚 Sources:</h4>
+                <div class="source-item">• <a href="https://www.britannica.com/biography/Saint-Joan-of-Arc" target="_blank" class="source-link">Britannica - Joan of Arc Timeline</a></div>
+                <div class="source-item">• <a href="https://archive.joan-of-arc.org/joanofarc_short_biography.html" target="_blank" class="source-link">Joan of Arc Archive - Biography</a></div>
+                <div class="source-item">• <a href="https://www.history.com/articles/7-surprising-facts-about-joan-of-arc" target="_blank" class="source-link">History.com - Joan of Arc Facts</a></div>
+            </div>
+        </div>
+
+        <div class="quote">
+            "I am not afraid... I was born to do this."
+        </div>
+
+        <div class="section">
+            <h2>Her Legacy</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>⚔️ Military Genius</h3>
+                    <p>Despite having no formal military training, Jeanne's strategic instincts and ability to inspire soldiers led to decisive French victories that changed the course of the Hundred Years' War.</p>
+                </div>
+                <div class="card">
+                    <h3>🕊️ Symbol of Faith</h3>
+                    <p>Her unwavering faith in her divine mission, even unto death, has made her a powerful religious icon and a saint of the Catholic Church.</p>
+                </div>
+                <div class="card">
+                    <h3>🇫🇷 French Heroine</h3>
+                    <p>Joan has become the ultimate symbol of French unity and nationalism, inspiring countless works of art, literature, and political movements throughout history.</p>
+                </div>
+                <div class="card">
+                    <h3>👑 Feminist Icon</h3>
+                    <p>As a woman who defied gender norms by wearing armor and leading armies, Jeanne has been embraced as an early example of female empowerment and courage.</p>
+                </div>
+            </div>
+            <div class="sources-section">
+                <h4>📚 Sources:</h4>
+                <div class="source-item">• <a href="https://www.thecollector.com/what-is-joan-of-arc-best-known-for-6-facts/" target="_blank" class="source-link">The Collector - What is Joan of Arc Best Known For?</a></div>
+                <div class="source-item">• <a href="https://kids.nationalgeographic.com/history/article/joan-of-arc" target="_blank" class="source-link">National Geographic Kids - Joan of Arc</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Interesting Facts</h2>
+            <p>🗡️ Jeanne wore men's clothing and armor throughout her military campaign, which was later used as evidence against her in her trial for heresy.</p>
+            <p>📜 She was illiterate but possessed remarkable eloquence during her trial, confounding her educated interrogators with her thoughtful and clever responses.</p>
+            <p>⚜️ The French royal coat of arms features the fleur-de-lis, a symbol closely associated with Jeanne and her divine mission.</p>
+            <p>🎭 Her story has inspired over 100 films, countless plays, operas, books, and works of art across the centuries.</p>
+            <p>🔥 Her execution was designed to leave no remains, but legend says her heart survived the flames and was later thrown into the Seine River.</p>
+        </div>
+
+        <div class="symbol">⚜️</div>
+
+        <div class="quote">
+            "One life is all we have and we live it as we believe in living it. But to sacrifice what you are and to live without belief, that is a fate more terrible than dying."
+        </div>
+    </div>
+
+    <footer>
+        <p>In memory of Saint Jeanne d'Arc (c. 1412 - 1431)</p>
+        <p>Patron Saint of France • La Pucelle</p>
+    </footer>
+</body>
+</html>
