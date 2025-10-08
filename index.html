@@ -358,7 +358,7 @@
     
     <div class="hero">
         <h1>JEANNE D'ARC</h1>
-        <p class="subtitle">• The Maid of Orléans</p>
+        <p class="subtitle">La Pucelle d'Orléans • The Maid of Orléans</p>
         <div class="scroll-indicator">↓</div>
     </div>
 
@@ -367,9 +367,6 @@
             <h2>The Legend</h2>
             <p>Jeanne d'Arc is one of history's most extraordinary figures. A peasant girl who claimed to receive divine visions, she led the French army to crucial victories during the Hundred Years' War and became a symbol of courage, faith, and national pride.</p>
             <p>Born around 1412 in Domrémy, France, Jeanne's story is one of unwavering conviction against impossible odds. At just 17 years old, she convinced the embattled crown prince Charles of Valois to allow her to lead French forces to the besieged city of Orléans, where she achieved a momentous victory.</p>
-            
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Joan_of_Arc_miniature_graded.jpg" alt="Joan of Arc medieval miniature" class="featured-image">
-            
             <div class="sources-section">
                 <h4>📚 Sources:</h4>
                 <div class="source-item">• <a href="https://www.britannica.com/biography/Saint-Joan-of-Arc" target="_blank" class="source-link">Britannica - Joan of Arc Biography</a></div>
@@ -423,28 +420,6 @@
         </div>
 
         <div class="section">
-            <h2>Historic Depictions</h2>
-            <div class="image-gallery">
-                <div class="image-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Ingres_coronation_charles_vii.jpg" alt="Joan of Arc at the Coronation of Charles VII by Ingres">
-                    <div class="image-caption">Joan of Arc at the Coronation of Charles VII (1854) - Jean Auguste Dominique Ingres</div>
-                </div>
-                <div class="image-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Jules_Bastien-Lepage%2C_Joan_of_Arc.jpg" alt="Joan of Arc by Jules Bastien-Lepage">
-                    <div class="image-caption">Joan of Arc (1879) - Jules Bastien-Lepage</div>
-                </div>
-                <div class="image-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Albert_Lynch_-_Jeanne_d%27Arc.jpg" alt="Joan of Arc by Albert Lynch">
-                    <div class="image-caption">Jeanne d'Arc (1903) - Albert Lynch</div>
-                </div>
-                <div class="image-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Joan_of_Arc_-_illustration_from_Figaro_Illustr%C3%A9_magazine.jpg" alt="Joan of Arc illustration">
-                    <div class="image-caption">Joan of Arc Illustration - Figaro Illustré (1903)</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
             <h2>Her Legacy</h2>
             <div class="grid">
                 <div class="card">
@@ -478,8 +453,6 @@
             <p>⚜️ The French royal coat of arms features the fleur-de-lis, a symbol closely associated with Jeanne and her divine mission.</p>
             <p>🎭 Her story has inspired over 100 films, countless plays, operas, books, and works of art across the centuries.</p>
             <p>🔥 Her execution was designed to leave no remains, but legend says her heart survived the flames and was later thrown into the Seine River.</p>
-            
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Joan_of_Arc_MET_DT774.jpg" alt="Joan of Arc on horseback" class="featured-image">
         </div>
 
         <div class="symbol">⚜️</div>
@@ -501,12 +474,11 @@
             en: {
                 button: '🇬🇧 English',
                 title: 'JEANNE D\'ARC',
-                subtitle: 'The Maid of Orléans',
+                subtitle: 'La Pucelle d\'Orléans • The Maid of Orléans',
                 scroll: '↓',
                 legendTitle: 'The Legend',
                 legendP1: 'Jeanne d\'Arc is one of history\'s most extraordinary figures. A peasant girl who claimed to receive divine visions, she led the French army to crucial victories during the Hundred Years\' War and became a symbol of courage, faith, and national pride.',
                 legendP2: 'Born around 1412 in Domrémy, France, Jeanne\'s story is one of unwavering conviction against impossible odds. At just 17 years old, she convinced the embattled crown prince Charles of Valois to allow her to lead French forces to the besieged city of Orléans, where she achieved a momentous victory.',
-                depictionsTitle: 'Historic Depictions',
                 timelineTitle: 'Life Timeline',
                 year1412: 'c. 1412',
                 timeline1412: 'Born in Domrémy, a small village in northeastern France, to Jacques d\'Arc and Isabelle Romée. She grew up during the Hundred Years\' War between France and England.',
@@ -551,7 +523,6 @@
                 legendTitle: 'La Légende',
                 legendP1: 'Jeanne d\'Arc est l\'une des figures les plus extraordinaires de l\'histoire. Une jeune paysanne qui prétendait recevoir des visions divines, elle a mené l\'armée française à des victoires cruciales pendant la guerre de Cent Ans et est devenue un symbole de courage, de foi et de fierté nationale.',
                 legendP2: 'Née vers 1412 à Domrémy, en France, l\'histoire de Jeanne est celle d\'une conviction inébranlable face à des obstacles insurmontables. À seulement 17 ans, elle a convaincu le prince héritier Charles de Valois de lui permettre de mener les forces françaises vers la ville assiégée d\'Orléans, où elle a remporté une victoire monumentale.',
-                depictionsTitle: 'Représentations Historiques',
                 timelineTitle: 'Chronologie de sa Vie',
                 year1412: 'v. 1412',
                 timeline1412: 'Née à Domrémy, un petit village du nord-est de la France, de Jacques d\'Arc et Isabelle Romée. Elle a grandi pendant la guerre de Cent Ans entre la France et l\'Angleterre.',
@@ -608,10 +579,9 @@
             // Section titles
             const sections = document.querySelectorAll('.section h2');
             if (sections[0]) sections[0].textContent = t.legendTitle;
-            if (sections[1]) sections[1].textContent = t.depictionsTitle;
-            if (sections[2]) sections[2].textContent = t.timelineTitle;
-            if (sections[3]) sections[3].textContent = t.legacyTitle;
-            if (sections[4]) sections[4].textContent = t.factsTitle;
+            if (sections[1]) sections[1].textContent = t.timelineTitle;
+            if (sections[2]) sections[2].textContent = t.legacyTitle;
+            if (sections[3]) sections[3].textContent = t.factsTitle;
 
             // Legend paragraphs - get first section's paragraphs only
             const firstSection = document.querySelectorAll('.section')[0];
