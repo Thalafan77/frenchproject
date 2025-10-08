@@ -29,6 +29,30 @@
             background: linear-gradient(rgba(43, 103, 119, 0.8), rgba(43, 103, 119, 0.9));
         }
 
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(82, 171, 152, 0.9);
+            color: rgb(255, 255, 255);
+            border: 2px solid rgb(255, 255, 255);
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(82, 171, 152, 0.4);
+        }
+
+        .language-toggle:hover {
+            background: rgb(255, 255, 255);
+            color: rgb(43, 103, 119);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(82, 171, 152, 0.6);
+        }
+
         .hero::before {
             content: '⚜';
             position: absolute;
@@ -283,6 +307,8 @@
     </style>
 </head>
 <body>
+    <button class="language-toggle" onclick="toggleLanguage()">🇫🇷 Français</button>
+    
     <div class="hero">
         <h1>JEANNE D'ARC</h1>
         <p class="subtitle">La Pucelle d'Orléans • The Maid of Orléans</p>
@@ -393,5 +419,192 @@
         <p>In memory of Saint Jeanne d'Arc (c. 1412 - 1431)</p>
         <p>Patron Saint of France • La Pucelle</p>
     </footer>
+
+    <script>
+        let currentLanguage = 'en';
+
+        const translations = {
+            en: {
+                button: '🇬🇧 English',
+                title: 'JEANNE D\'ARC',
+                subtitle: 'La Pucelle d\'Orléans • The Maid of Orléans',
+                scroll: '↓',
+                legendTitle: 'The Legend',
+                legendP1: 'Jeanne d\'Arc is one of history\'s most extraordinary figures. A peasant girl who claimed to receive divine visions, she led the French army to crucial victories during the Hundred Years\' War and became a symbol of courage, faith, and national pride.',
+                legendP2: 'Born around 1412 in Domrémy, France, Jeanne\'s story is one of unwavering conviction against impossible odds. At just 17 years old, she convinced the embattled crown prince Charles of Valois to allow her to lead French forces to the besieged city of Orléans, where she achieved a momentous victory.',
+                timelineTitle: 'Life Timeline',
+                year1412: 'c. 1412',
+                timeline1412: 'Born in Domrémy, a small village in northeastern France, to Jacques d\'Arc and Isabelle Romée. She grew up during the Hundred Years\' War between France and England.',
+                year1425: '1425',
+                timeline1425: 'At age 13, Jeanne began experiencing visions and hearing voices she identified as Saint Michael, Saint Catherine, and Saint Margaret. They urged her to support Charles VII and help drive the English from France.',
+                year1429: '1429',
+                timeline1429: 'Convinced the Dauphin Charles to give her command of an army. Led French forces to a spectacular victory at Orléans, turning the tide of the war. Charles VII was crowned King at Reims with Jeanne at his side.',
+                year1430: '1430',
+                timeline1430: 'Captured by Burgundian forces allied with England during a skirmish near Compiègne. She was sold to the English for 10,000 francs.',
+                year1431: '1431',
+                timeline1431: 'Tried by an ecclesiastical court for heresy and witchcraft. Despite her eloquent defense, she was found guilty and burned at the stake in Rouen on May 30, at approximately 19 years old.',
+                year1456: '1456',
+                timeline1456: 'Posthumously exonerated by Pope Callixtus III after a retrial. Declared a martyr.',
+                year1920: '1920',
+                timeline1920: 'Canonized as a saint by Pope Benedict XV. Became one of the patron saints of France.',
+                quote1: '"I am not afraid... I was born to do this."',
+                legacyTitle: 'Her Legacy',
+                military: '⚔️ Military Genius',
+                militaryText: 'Despite having no formal military training, Jeanne\'s strategic instincts and ability to inspire soldiers led to decisive French victories that changed the course of the Hundred Years\' War.',
+                faith: '🕊️ Symbol of Faith',
+                faithText: 'Her unwavering faith in her divine mission, even unto death, has made her a powerful religious icon and a saint of the Catholic Church.',
+                heroine: '🇫🇷 French Heroine',
+                heroineText: 'Jeanne has become the ultimate symbol of French unity and nationalism, inspiring countless works of art, literature, and political movements throughout history.',
+                feminist: '👑 Feminist Icon',
+                feministText: 'As a woman who defied gender norms by wearing armor and leading armies, Jeanne has been embraced as an early example of female empowerment and courage.',
+                factsTitle: 'Interesting Facts',
+                fact1: '🗡️ Jeanne wore men\'s clothing and armor throughout her military campaign, which was later used as evidence against her in her trial for heresy.',
+                fact2: '📜 She was illiterate but possessed remarkable eloquence during her trial, confounding her educated interrogators with her thoughtful and clever responses.',
+                fact3: '⚜️ The French royal coat of arms features the fleur-de-lis, a symbol closely associated with Jeanne and her divine mission.',
+                fact4: '🎭 Her story has inspired over 100 films, countless plays, operas, books, and works of art across the centuries.',
+                fact5: '🔥 Her execution was designed to leave no remains, but legend says her heart survived the flames and was later thrown into the Seine River.',
+                quote2: '"One life is all we have and we live it as we believe in living it. But to sacrifice what you are and to live without belief, that is a fate more terrible than dying."',
+                footer1: 'In memory of Saint Jeanne d\'Arc (c. 1412 - 1431)',
+                footer2: 'Patron Saint of France • La Pucelle',
+                sources: '📚 Sources:'
+            },
+            fr: {
+                button: '🇫🇷 Français',
+                title: 'JEANNE D\'ARC',
+                subtitle: 'La Pucelle d\'Orléans',
+                scroll: '↓',
+                legendTitle: 'La Légende',
+                legendP1: 'Jeanne d\'Arc est l\'une des figures les plus extraordinaires de l\'histoire. Une jeune paysanne qui prétendait recevoir des visions divines, elle a mené l\'armée française à des victoires cruciales pendant la guerre de Cent Ans et est devenue un symbole de courage, de foi et de fierté nationale.',
+                legendP2: 'Née vers 1412 à Domrémy, en France, l\'histoire de Jeanne est celle d\'une conviction inébranlable face à des obstacles insurmontables. À seulement 17 ans, elle a convaincu le prince héritier Charles de Valois de lui permettre de mener les forces françaises vers la ville assiégée d\'Orléans, où elle a remporté une victoire monumentale.',
+                timelineTitle: 'Chronologie de sa Vie',
+                year1412: 'v. 1412',
+                timeline1412: 'Née à Domrémy, un petit village du nord-est de la France, de Jacques d\'Arc et Isabelle Romée. Elle a grandi pendant la guerre de Cent Ans entre la France et l\'Angleterre.',
+                year1425: '1425',
+                timeline1425: 'À l\'âge de 13 ans, Jeanne commence à avoir des visions et à entendre des voix qu\'elle identifie comme étant Saint Michel, Sainte Catherine et Sainte Marguerite. Elles l\'exhortent à soutenir Charles VII et à aider à chasser les Anglais de France.',
+                year1429: '1429',
+                timeline1429: 'A convaincu le Dauphin Charles de lui donner le commandement d\'une armée. A mené les forces françaises à une victoire spectaculaire à Orléans, renversant le cours de la guerre. Charles VII a été couronné roi à Reims avec Jeanne à ses côtés.',
+                year1430: '1430',
+                timeline1430: 'Capturée par les forces bourguignonnes alliées à l\'Angleterre lors d\'une escarmouche près de Compiègne. Elle a été vendue aux Anglais pour 10 000 francs.',
+                year1431: '1431',
+                timeline1431: 'Jugée par un tribunal ecclésiastique pour hérésie et sorcellerie. Malgré sa défense éloquente, elle a été déclarée coupable et brûlée sur le bûcher à Rouen le 30 mai, à environ 19 ans.',
+                year1456: '1456',
+                timeline1456: 'Posthumement innocentée par le pape Calixte III après un nouveau procès. Déclarée martyre.',
+                year1920: '1920',
+                timeline1920: 'Canonisée comme sainte par le pape Benoît XV. Devenue l\'une des saintes patronnes de la France.',
+                quote1: '"Je n\'ai pas peur... Je suis née pour faire cela."',
+                legacyTitle: 'Son Héritage',
+                military: '⚔️ Génie Militaire',
+                militaryText: 'Malgré l\'absence de formation militaire formelle, les instincts stratégiques de Jeanne et sa capacité à inspirer les soldats ont conduit à des victoires françaises décisives qui ont changé le cours de la guerre de Cent Ans.',
+                faith: '🕊️ Symbole de Foi',
+                faithText: 'Sa foi inébranlable en sa mission divine, même jusqu\'à la mort, a fait d\'elle une puissante icône religieuse et une sainte de l\'Église catholique.',
+                heroine: '🇫🇷 Héroïne Française',
+                heroineText: 'Jeanne est devenue le symbole ultime de l\'unité et du nationalisme français, inspirant d\'innombrables œuvres d\'art, de littérature et de mouvements politiques à travers l\'histoire.',
+                feminist: '👑 Icône Féministe',
+                feministText: 'En tant que femme qui a défié les normes de genre en portant une armure et en menant des armées, Jeanne a été adoptée comme un exemple précoce d\'émancipation et de courage féminin.',
+                factsTitle: 'Faits Intéressants',
+                fact1: '🗡️ Jeanne portait des vêtements et une armure d\'homme tout au long de sa campagne militaire, ce qui a ensuite été utilisé comme preuve contre elle lors de son procès pour hérésie.',
+                fact2: '📜 Elle était illettrée mais possédait une éloquence remarquable lors de son procès, confondant ses interrogateurs érudits par ses réponses réfléchies et intelligentes.',
+                fact3: '⚜️ Les armoiries royales françaises comportent la fleur-de-lis, un symbole étroitement associé à Jeanne et à sa mission divine.',
+                fact4: '🎭 Son histoire a inspiré plus de 100 films, d\'innombrables pièces de théâtre, opéras, livres et œuvres d\'art au fil des siècles.',
+                fact5: '🔥 Son exécution était conçue pour ne laisser aucune trace, mais la légende dit que son cœur a survécu aux flammes et a ensuite été jeté dans la Seine.',
+                quote2: '"Une seule vie est tout ce que nous avons et nous la vivons comme nous croyons devoir la vivre. Mais sacrifier ce que vous êtes et vivre sans croyance, c\'est un sort plus terrible que mourir."',
+                footer1: 'En mémoire de Sainte Jeanne d\'Arc (v. 1412 - 1431)',
+                footer2: 'Sainte Patronne de France • La Pucelle',
+                sources: '📚 Sources :'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'fr' : 'en';
+            const t = translations[currentLanguage];
+
+            // Button
+            const btn = document.querySelector('.language-toggle');
+            if (btn) btn.textContent = t.button;
+
+            // Hero section
+            const h1 = document.querySelector('h1');
+            if (h1) h1.textContent = t.title;
+            
+            const subtitle = document.querySelector('.subtitle');
+            if (subtitle) subtitle.textContent = t.subtitle;
+            
+            // Section titles
+            const sections = document.querySelectorAll('.section h2');
+            if (sections[0]) sections[0].textContent = t.legendTitle;
+            if (sections[1]) sections[1].textContent = t.timelineTitle;
+            if (sections[2]) sections[2].textContent = t.legacyTitle;
+            if (sections[3]) sections[3].textContent = t.factsTitle;
+
+            // Legend paragraphs - get first section's paragraphs only
+            const firstSection = document.querySelectorAll('.section')[0];
+            if (firstSection) {
+                const legendPs = firstSection.querySelectorAll('p');
+                if (legendPs[0]) legendPs[0].textContent = t.legendP1;
+                if (legendPs[1]) legendPs[1].textContent = t.legendP2;
+            }
+
+            // Timeline
+            const years = document.querySelectorAll('.year');
+            if (years[0]) years[0].textContent = t.year1412;
+            if (years[1]) years[1].textContent = t.year1425;
+            if (years[2]) years[2].textContent = t.year1429;
+            if (years[3]) years[3].textContent = t.year1430;
+            if (years[4]) years[4].textContent = t.year1431;
+            if (years[5]) years[5].textContent = t.year1456;
+            if (years[6]) years[6].textContent = t.year1920;
+
+            const timelinePs = document.querySelectorAll('.timeline-item p');
+            if (timelinePs[0]) timelinePs[0].textContent = t.timeline1412;
+            if (timelinePs[1]) timelinePs[1].textContent = t.timeline1425;
+            if (timelinePs[2]) timelinePs[2].textContent = t.timeline1429;
+            if (timelinePs[3]) timelinePs[3].textContent = t.timeline1430;
+            if (timelinePs[4]) timelinePs[4].textContent = t.timeline1431;
+            if (timelinePs[5]) timelinePs[5].textContent = t.timeline1456;
+            if (timelinePs[6]) timelinePs[6].textContent = t.timeline1920;
+
+            // Quotes
+            const quotes = document.querySelectorAll('.quote');
+            if (quotes[0]) quotes[0].textContent = t.quote1;
+            if (quotes[1]) quotes[1].textContent = t.quote2;
+
+            // Legacy cards
+            const cardTitles = document.querySelectorAll('.card h3');
+            if (cardTitles[0]) cardTitles[0].textContent = t.military;
+            if (cardTitles[1]) cardTitles[1].textContent = t.faith;
+            if (cardTitles[2]) cardTitles[2].textContent = t.heroine;
+            if (cardTitles[3]) cardTitles[3].textContent = t.feminist;
+
+            const cardTexts = document.querySelectorAll('.card p');
+            if (cardTexts[0]) cardTexts[0].textContent = t.militaryText;
+            if (cardTexts[1]) cardTexts[1].textContent = t.faithText;
+            if (cardTexts[2]) cardTexts[2].textContent = t.heroineText;
+            if (cardTexts[3]) cardTexts[3].textContent = t.feministText;
+
+            // Facts - get last section
+            const allSections = document.querySelectorAll('.section');
+            const factsSection = allSections[allSections.length - 1];
+            if (factsSection) {
+                const allFactPs = factsSection.querySelectorAll('p');
+                const factsOnly = Array.from(allFactPs).filter(p => !p.closest('.sources-section'));
+                if (factsOnly[0]) factsOnly[0].textContent = t.fact1;
+                if (factsOnly[1]) factsOnly[1].textContent = t.fact2;
+                if (factsOnly[2]) factsOnly[2].textContent = t.fact3;
+                if (factsOnly[3]) factsOnly[3].textContent = t.fact4;
+                if (factsOnly[4]) factsOnly[4].textContent = t.fact5;
+            }
+
+            // Footer
+            const footerPs = document.querySelectorAll('footer p');
+            if (footerPs[0]) footerPs[0].textContent = t.footer1;
+            if (footerPs[1]) footerPs[1].textContent = t.footer2;
+
+            // Sources
+            const sourceTitles = document.querySelectorAll('.sources-section h4');
+            sourceTitles.forEach(title => {
+                if (title) title.textContent = t.sources;
+            });
+        }
+    </script>
 </body>
 </html>
